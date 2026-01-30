@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class Practice2 {
+    public void main(){
+//        String TableName = "Java's Primitive Types";
+//        String Frow = "| Category   | Name     | Bits |";
+//        System.out.printf("%s%n", TableName);
+//        System.out.printf("%s%n", Frow);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Floating", "double", 64);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Floating", "float", 32);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "long", 64);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "int", 32);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "char", 16);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "short", 16);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "byte", 8);
+//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "boolean", 1);
+//  problem 1
+//        System.out.println("Abdulhamid Muxtorjonov");
+//        System.out.println("Mirishkor street, 12");
+//        System.out.println("Alpomish");
+//        System.out.println("AB 12345");
+//        System.out.println("UZBEKISTAN");
+//  problem 2
+//        Scanner input = new Scanner(System.in);
+//        System.out.print("Enter your name: ");
+//        String name = input.nextLine();
+//        System.out.println("Hello, " + name + "!");
+//        input.close();
+//  problem 3
+//        double width = 4.5;
+//        double height = 7.9;
+//        double area = width * height;
+//        double perimeter = 2 * (width + height);
+//        System.out.println("Area: " + area);
+//        System.out.println("Perimeter: " + perimeter);
+//  problem 4
+//        Scanner input = new Scanner(System.in);
+//        System.out.print("radius of the cylinder: ");
+//        double radius = input.nextDouble();
+//        System.out.print("length of the cylinder: ");
+//        double length = input.nextDouble();
+//        double area = Math.PI * radius * radius;
+//        double volume = area * length;
+//        System.out.println("Area: " + area);
+//        System.out.println("Volume: " + volume);
+//        input.close();
+//  problem 5
+//        Scanner input = new Scanner(System.in);
+//        System.out.print("Enter the length of the side of the triangle: ");
+//        double side = input.nextDouble();
+//        System.out.print("Enter the length of the prism: ");
+//        double length = input.nextDouble();
+//        double area = (Math.sqrt(3) / 4) * side * side;
+//        double volume = area * length;
+//        System.out.println("Area: " + area);
+//        System.out.println("Volume: " + volume);
+//        input.close();
+    }
+}
