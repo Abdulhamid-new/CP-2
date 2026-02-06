@@ -1,0 +1,163 @@
+import java.util.Scanner;
+
+public class week1lab2 {
+    public static void main(String[] args) {
+        //problem 1
+//        Scanner sc = new Scanner(System.in);
+//        System.out.print("Enter how many cappuccinos: ");
+//        int cappuccinos = sc.nextInt();
+//
+//        System.out.print("Enter how many muffins: ");
+//        int muffins = sc.nextInt();
+//
+//        double cappuccinoPrice = 4.50;
+//        double muffinPrice = 3.00;
+//        double subtotal = (cappuccinos * cappuccinoPrice) + (muffins * muffinPrice);
+//        double tax = subtotal * 0.08;
+//        double tip = 5.00;
+//        double grandTotal = subtotal + tax + tip;
+//
+//        System.out.printf("Grand Total: $%.2f%n", grandTotal);
+//        sc.close();
+        //problem 2
+//          Scanner sc = new Scanner(System.in);
+//          System.out.print("Enter the distance: ");
+//          double distance = sc.nextInt();
+//
+//          double consumption = 8.5;
+//          int price = 12500;
+//          double fuelNeeded = (distance/100)*8.5;
+//          double costOfTheTrip = fuelNeeded*12500;
+//
+//          System.out.printf("Amount of fuel you need: %.2f%n", fuelNeeded);
+//          System.out.printf("Cost of the trip: %.2f UZS", costOfTheTrip);
+//          sc.close();
+        //problem 3
+//        Scanner sc = new Scanner(System.in);
+//        System.out.print("Enter the amount of seconds: ");
+//        int seconds = sc.nextInt();
+//
+//        int hours = seconds/3600;
+//        int minutes = (seconds%3600)/60;
+//        int finalSec = seconds%60;
+//
+//        System.out.printf("%d Hrs, %d minutes, %d seconds", hours, minutes, finalSec);
+//        sc.close();
+        //problem 4
+//        Scanner sc = new Scanner(System.in);
+//        System.out.print("Enter your age: ");
+//        int age = sc.nextInt();
+//        double price;
+//
+//        if (age >= 0 && age <= 12) {
+//            price = 7.0;
+//        } else if (age >= 13 && age <= 17) {
+//            price = 10.0;
+//        } else if (age >=18 && age <= 64) {
+//            price = 15;
+//        } else {
+//            price = 10.0;
+//        }
+//
+//        System.out.printf("Ticket Price: $%.0f%n", price);
+//        sc.close();
+        //problem 5
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.print("Enter a year: ");
+//        int year = scanner.nextInt();
+//
+//        boolean isLeapYear = false;
+//
+//        if ((year%4==0 && year%100 !=0) || (year%400==0)) {
+//            isLeapYear = true;
+//        }
+//
+//        if (isLeapYear) {
+//            System.out.print(year+" is leap year");
+//        } else {
+//            System.out.print(year+" is not a leap year");
+//        }
+//
+//        scanner.close();
+        //problem 6
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.print("Enter package weight (kg): ");
+//        double weight = scanner.nextDouble();
+//        double cost;
+//
+//        if (weight <= 2) {
+//            cost = 5.0;
+//        } else if (weight <= 10) {
+//            cost = 10.0;
+//        } else {
+//            double extraWeight = weight - 10;
+//            cost = 10.0 + (extraWeight * 2.0);
+//        }
+//
+//        System.out.printf("Shipping Cost: $%.2f%n", cost);
+//        scanner.close();
+        //problem 7
+//        Scanner scanner = new Scanner(System.in);
+//        int CORRECT_PIN = 1234;
+//        int attempts = 0;
+//        boolean accessGranted = false;
+//
+//        while (attempts < 3 && !accessGranted) {
+//            System.out.print("Enter PIN: ");
+//            int enteredPin = scanner.nextInt();
+//
+//            if (enteredPin == CORRECT_PIN) {
+//                System.out.println("Access Granted");
+//                accessGranted = true;
+//            } else {
+//                System.out.println("Try again");
+//                attempts++;
+//            }
+//        }
+//
+//        if (!accessGranted) {
+//            System.out.println("Account Locked");
+//        }
+//
+//        scanner.close();
+        //problem 8
+//        int population = 100000;
+//        double growthRate = 0.05;
+//        int targetPopulation = 200000;
+//        int year = 0;
+//
+//        while (population < targetPopulation) {
+//            year++;
+//            population += population * growthRate;
+//            System.out.println("Year " + year + ": " + population);
+//        }
+//
+//        System.out.println("It will take " + year + " years to double.");
+        //problem 9
+//        for (int i = 1; i <= 50; i++) {
+//            if (i % 3 == 0 && i % 5 == 0) {
+//                System.out.print("FizzBuzz");
+//            } else if (i % 3 == 0) {
+//                System.out.print("Fizz");
+//            } else if (i % 5 == 0) {
+//                System.out.print("Buzz");
+//            } else {
+//                System.out.print(i);
+//            }
+//        }
+        //problem 10
+//        Scanner scanner = new Scanner(System.in);
+//        double balance = 1000.0;
+//        double interestRate = 0.05;
+//
+//        System.out.print("Enter number of years: ");
+//        int years = scanner.nextInt();
+//
+//        for (int year = 1; year <= years; year++) {
+//            balance = balance + (balance * interestRate);
+//            System.out.printf("Year %d: $%.2f%n", year, balance);
+//        }
+//
+//        scanner.close();
+    }
+}
