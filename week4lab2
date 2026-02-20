@@ -1,0 +1,229 @@
+import java.util.Scanner;
+//Problem 1
+
+//public class LibraryBook {
+//    private String bookTitle;
+//    private String author;
+//    private int pages;
+//
+//    public LibraryBook() {
+//        this.bookTitle = "Unknown";
+//        this.author = "Unknown";
+//        this.pages = 1;
+//    }
+//
+////    public LibraryBook(String bookTitle, String author, int pages) {
+////        this.bookTitle = bookTitle;
+////        this.author = author;
+////        if (pages > 0) {
+////            this.pages = pages;
+////        }
+////    }
+//
+//    public void setBookTitle(String bookTitle) {
+//        if (bookTitle != null && !bookTitle.isEmpty()) {
+//            this.bookTitle = bookTitle;
+//        } else {
+//            this.bookTitle = "Unknown";
+//        }
+//    }
+//
+//    public void setAuthor(String author) {
+//        if (author != null && !author.isEmpty()) {
+//            this.author = author;
+//        } else {
+//            this.author = "Unknown";
+//        }
+//    }
+//
+//    public void setPages(int pages) {
+//        if (pages > 0) {
+//            this.pages = pages;
+//        }
+//    }
+//
+//    public String getBookTitle() {
+//        return bookTitle;
+//    }
+//
+//    public String getAuthor() {
+//        return author;
+//    }
+//
+//    public int getPages() {
+//        return pages;
+//    }
+//}
+    //Test Program
+//public class LibraryBookTest {
+//    public static void main(String[] args) {
+//        System.out.println("Test 1: Book with valid data");
+//        LibraryBook book1 = new LibraryBook();
+//        book1.setBookTitle("ABCDFGH");
+//        book1.setAuthor("H. HBSUA");
+//        book1.setPages(180);
+//        System.out.println("Book 1 Information:");
+//        book1.displayInfo();
+//        System.out.println("Test 2: Attempt to set pages to negative value");
+//        LibraryBook book2 = new LibraryBook();
+//        book2.setBookTitle("ABCDEFG");
+//        book2.setAuthor("HLMNOPQ");
+//        book2.displayInfo();
+//        book2.setPages(-50);
+//        System.out.println("After attempting to set pages to -50:");
+//        book2.displayInfo();
+//    }
+//}
+
+//Problem 2
+
+//class Sensor {
+//
+//    private String location;
+//    private double reading;
+//
+//    public Sensor(String location, double reading) {
+//        this.location = location;
+//
+//        if (reading < -50.0 || reading > 50.0) {
+//            this.reading = 0.0;
+//        } else {
+//            this.reading = reading;
+//        }
+//    }
+//
+//    public double getReading() {
+//        return reading;
+//    }
+//
+//    public String getLocation() {
+//        return location;
+//    }
+//}
+//public class TestSensor {
+//    public static void main(String[] args) {
+//
+//        Scanner input = new Scanner(System.in);
+//
+//        Sensor[] sensors = new Sensor[5];
+//        double sum = 0;
+//
+//        for (int i = 0; i < 5; i++) {
+//            System.out.print("Enter location for sensor " + (i + 1) + ": ");
+//            String location = input.nextLine();
+//            System.out.print("Enter temperature: ");
+//            double reading = input.nextDouble();
+//            input.nextLine();
+//
+//            sensors[i] = new Sensor(location, reading);
+//            sum += sensors[i].getReading();
+//        }
+//
+//        double average = sum / 5;
+//
+//        System.out.println("\nAverage Temperature: " + average);
+//    }
+//}
+
+//Problem 3
+
+//class StepCounter {
+//    private static int totalStepsAllUsers = 0;
+//
+//    private int individualSteps = 0;
+//
+//    public void walk(int steps) {
+//        individualSteps += steps;       // update personal steps
+//        totalStepsAllUsers += steps;    // update global steps
+//    }
+//
+//    public int getIndividualSteps() {
+//        return individualSteps;
+//    }
+//
+//    public static int getTotalStepsAllUsers() {
+//        return totalStepsAllUsers;
+//    }
+//
+//    public static void resetGlobalSteps() {
+//        totalStepsAllUsers = 0;
+//    }
+//}
+//public class TestStepCounter {
+//    public static void main(String[] args) {
+//
+//        StepCounter userA = new StepCounter();
+//        StepCounter userB = new StepCounter();
+//
+//        userA.walk(1000);
+//        userB.walk(2000);
+//        userA.walk(500);
+//
+//        System.out.println("User A steps: " + userA.getIndividualSteps());
+//        System.out.println("User B steps: " + userB.getIndividualSteps());
+//        System.out.println("Total steps (All Users): " + StepCounter.getTotalStepsAllUsers());
+//
+//        StepCounter.resetGlobalSteps();
+//        System.out.println("Total steps after reset: " + StepCounter.getTotalStepsAllUsers());
+//    }
+//}
+
+//Problem 4
+
+//class StopWatch {
+//
+//    private long startTime;
+//    private long endTime;
+//
+//    public void start() {
+//        startTime = System.currentTimeMillis();
+//    }
+//
+//    public void stop() {
+//        endTime = System.currentTimeMillis();
+//    }
+//
+//    public long getElapsedTime() {
+//        return endTime - startTime;
+//    }
+//}
+//class MathTool {
+//
+//    public static long factorialRecursive(int n) {
+//        if (n == 0 || n == 1)
+//            return 1;
+//        return n * factorialRecursive(n - 1);
+//    }
+//
+//    public static long factorialIterative(int n) {
+//        long result = 1;
+//        for (int i = 1; i <= n; i++) {
+//            result *= i;
+//        }
+//        return result;
+//    }
+//}
+//public class TestPerformance {
+//
+//    public static void main(String[] args) {
+//
+//        StopWatch sw = new StopWatch();
+//
+//        sw.start();
+//        for (int i = 0; i < 1000000; i++) {
+//            MathTool.factorialRecursive(20);
+//        }
+//        sw.stop();
+//        long recursiveTime = sw.getElapsedTime();
+//
+//        sw.start();
+//        for (int i = 0; i < 1000000; i++) {
+//            MathTool.factorialIterative(20);
+//        }
+//        sw.stop();
+//        long iterativeTime = sw.getElapsedTime();
+//
+//        System.out.println("Recursive Time: " + recursiveTime + " ms");
+//        System.out.println("Iterative Time: " + iterativeTime + " ms");
+//    }
+//}
