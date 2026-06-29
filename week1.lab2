@@ -1,59 +1,518 @@
-import java.util.Scanner;
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MedStar — Shifoxona Tizimi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans','Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;}
+  ::-webkit-scrollbar{width:6px;}
+  ::-webkit-scrollbar-track{background:#1e293b;}
+  ::-webkit-scrollbar-thumb{background:#334155;border-radius:3px;}
 
-public class Practice2 {
-    public void main(){
-//        String TableName = "Java's Primitive Types";
-//        String Frow = "| Category   | Name     | Bits |";
-//        System.out.printf("%s%n", TableName);
-//        System.out.printf("%s%n", Frow);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Floating", "double", 64);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Floating", "float", 32);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "long", 64);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "int", 32);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "char", 16);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "short", 16);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "byte", 8);
-//        System.out.printf("| %-10s | %-8s | %04d |%n", "Integral", "boolean", 1);
-//  problem 1
-//        System.out.println("Abdulhamid Muxtorjonov");
-//        System.out.println("Mirishkor street, 12");
-//        System.out.println("Alpomish");
-//        System.out.println("AB 12345");
-//        System.out.println("UZBEKISTAN");
-//  problem 2
-//        Scanner input = new Scanner(System.in);
-//        System.out.print("Enter your name: ");
-//        String name = input.nextLine();
-//        System.out.println("Hello, " + name + "!");
-//        input.close();
-//  problem 3
-//        double width = 4.5;
-//        double height = 7.9;
-//        double area = width * height;
-//        double perimeter = 2 * (width + height);
-//        System.out.println("Area: " + area);
-//        System.out.println("Perimeter: " + perimeter);
-//  problem 4
-//        Scanner input = new Scanner(System.in);
-//        System.out.print("radius of the cylinder: ");
-//        double radius = input.nextDouble();
-//        System.out.print("length of the cylinder: ");
-//        double length = input.nextDouble();
-//        double area = Math.PI * radius * radius;
-//        double volume = area * length;
-//        System.out.println("Area: " + area);
-//        System.out.println("Volume: " + volume);
-//        input.close();
-//  problem 5
-//        Scanner input = new Scanner(System.in);
-//        System.out.print("Enter the length of the side of the triangle: ");
-//        double side = input.nextDouble();
-//        System.out.print("Enter the length of the prism: ");
-//        double length = input.nextDouble();
-//        double area = (Math.sqrt(3) / 4) * side * side;
-//        double volume = area * length;
-//        System.out.println("Area: " + area);
-//        System.out.println("Volume: " + volume);
-//        input.close();
-    }
+  .layout{display:flex;min-height:100vh;}
+
+  /* SIDEBAR */
+  .sidebar{width:220px;background:#0a1020;border-right:1px solid #1e293b;display:flex;flex-direction:column;position:fixed;height:100vh;z-index:10;}
+  .logo{padding:22px 18px 16px;border-bottom:1px solid #1e293b;display:flex;align-items:center;gap:10px;}
+  .logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .logo-text{font-weight:700;font-size:14px;color:#f1f5f9;}
+  .logo-sub{font-size:11px;color:#64748b;}
+  nav{padding:12px 10px;flex:1;}
+  .nav-btn{width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;border:none;cursor:pointer;margin-bottom:4px;background:transparent;color:#94a3b8;font-weight:400;font-size:14px;transition:all .2s;border-left:3px solid transparent;font-family:inherit;text-align:left;}
+  .nav-btn:hover{background:#1e293b30;color:#cbd5e1;}
+  .nav-btn.active{background:linear-gradient(135deg,#3b82f620,#8b5cf620);color:#93c5fd;font-weight:600;border-left:3px solid #3b82f6;}
+  .nav-icon{font-size:16px;}
+  .sidebar-footer{padding:12px 16px;border-top:1px solid #1e293b;font-size:12px;color:#475569;}
+  .sidebar-footer div{margin-bottom:4px;}
+
+  /* MAIN */
+  .main{margin-left:220px;flex:1;padding:28px;min-height:100vh;}
+  .page-title{font-size:24px;font-weight:700;color:#f1f5f9;margin-bottom:4px;}
+  .page-sub{color:#64748b;font-size:14px;margin-bottom:24px;}
+
+  /* CARDS */
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+  .stat-card{background:#1e293b;border-radius:14px;padding:20px 22px;border:1px solid #334155;position:relative;overflow:hidden;}
+  .stat-bg{position:absolute;right:-10px;top:-10px;font-size:52px;opacity:0.07;}
+  .stat-label{font-size:13px;color:#94a3b8;margin-bottom:8px;}
+  .stat-val{font-size:32px;font-weight:800;}
+  .stat-bar{width:30px;height:3px;border-radius:2px;margin-top:10px;}
+
+  .dep-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
+  .dep-card{background:#1e293b;border-radius:14px;padding:18px;}
+  .dep-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .dep-icon-box{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+  .dep-name{font-weight:600;font-size:14px;color:#f1f5f9;}
+  .dep-desc{font-size:11px;color:#64748b;}
+  .dep-stats{display:flex;justify-content:space-between;font-size:13px;color:#94a3b8;}
+
+  /* TABLE */
+  .card{background:#1e293b;border-radius:14px;border:1px solid #334155;overflow:hidden;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  thead tr{background:#0f172a;}
+  th{padding:12px 14px;text-align:left;color:#64748b;font-weight:600;font-size:12px;white-space:nowrap;}
+  td{padding:12px 14px;}
+  tbody tr{border-top:1px solid #0f172a;}
+  tbody tr:nth-child(odd){background:#1e293b;}
+  tbody tr:nth-child(even){background:#172033;}
+  tbody tr:hover{background:#1e3050;}
+
+  .badge{padding:3px 10px;border-radius:20px;font-size:12px;display:inline-block;}
+  .btn-icon{border:none;border-radius:7px;padding:5px 10px;cursor:pointer;font-size:13px;}
+  .btn-edit{background:#3b82f620;color:#3b82f6;}
+  .btn-del{background:#ef444420;color:#ef4444;}
+  .btn-edit:hover{background:#3b82f640;}
+  .btn-del:hover{background:#ef444440;}
+
+  /* FILTERS */
+  .filters{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;}
+  .filters input, .filters select{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:9px 14px;color:#e2e8f0;font-size:14px;font-family:inherit;outline:none;}
+  .filters input:focus, .filters select:focus{border-color:#3b82f6;}
+  .filters input{width:220px;}
+
+  /* BTN PRIMARY */
+  .btn-primary{background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;font-weight:600;font-size:14px;font-family:inherit;display:flex;align-items:center;gap:8px;}
+  .btn-primary:hover{opacity:.9;}
+
+  /* PAGE HEADER */
+  .page-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
+
+  /* BO'LIMLAR */
+  .bolim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .bolim-card{background:#1e293b;border-radius:16px;padding:24px;}
+  .bolim-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .bolim-icon-big{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+  .bolim-stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+  .bolim-stat{background:#0f172a;border-radius:10px;padding:12px;text-align:center;}
+  .bolim-stat-val{font-size:22px;font-weight:800;}
+  .bolim-stat-lbl{font-size:11px;color:#64748b;margin-top:2px;}
+  .dr-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #0f172a;}
+  .dr-row:last-child{border-bottom:none;}
+  .dr-section-label{font-size:11px;color:#64748b;margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+
+  /* SHIFOKORLAR */
+  .doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .doc-card{background:#1e293b;border-radius:14px;padding:20px;display:flex;gap:16px;}
+  .doc-avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+
+  /* MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;background:#00000090;align-items:center;justify-content:center;z-index:100;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:#1e293b;border-radius:18px;padding:32px;width:500px;box-shadow:0 25px 60px #00000060;border:1px solid #334155;max-height:90vh;overflow-y:auto;}
+  .modal h2{color:#f1f5f9;margin-bottom:22px;font-size:20px;font-weight:700;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .form-group{display:flex;flex-direction:column;gap:6px;}
+  .form-group label{font-size:12px;color:#64748b;}
+  .form-group input, .form-group select{background:#0f172a;border:1px solid #334155;border-radius:10px;padding:10px 12px;color:#e2e8f0;font-size:14px;font-family:inherit;outline:none;}
+  .form-group input:focus, .form-group select:focus{border-color:#3b82f6;}
+  .modal-actions{display:flex;gap:12px;margin-top:22px;justify-content:flex-end;}
+  .btn-cancel{background:#334155;color:#94a3b8;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;font-size:14px;font-family:inherit;}
+  .btn-cancel:hover{background:#475569;}
+  .btn-save{background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;border:none;border-radius:10px;padding:10px 24px;cursor:pointer;font-weight:600;font-size:14px;font-family:inherit;}
+  .btn-save:hover{opacity:.9;}
+
+  .empty-row td{padding:40px;text-align:center;color:#475569;}
+  .section-title{font-size:16px;font-weight:600;color:#cbd5e1;margin-bottom:14px;}
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">🏥</div>
+      <div>
+        <div class="logo-text">MedStar</div>
+        <div class="logo-sub">Shifoxona tizimi</div>
+      </div>
+    </div>
+    <nav>
+      <button class="nav-btn active" onclick="showTab('dashboard',this)"><span class="nav-icon">📊</span> Dashboard</button>
+      <button class="nav-btn" onclick="showTab('bemorlar',this)"><span class="nav-icon">👥</span> Bemorlar</button>
+      <button class="nav-btn" onclick="showTab('bolimlar',this)"><span class="nav-icon">🏢</span> Bo'limlar</button>
+      <button class="nav-btn" onclick="showTab('shifokorlar',this)"><span class="nav-icon">👨‍⚕️</span> Shifokorlar</button>
+    </nav>
+    <div class="sidebar-footer">
+      <div id="sidebarDate"></div>
+      <div>🟢 Tizim ishlayapti</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div id="tab-dashboard" class="tab-page">
+      <h1 class="page-title">Bosh sahifa</h1>
+      <p class="page-sub">Shifoxona umumiy ko'rsatkichlari</p>
+      <div class="stat-grid" id="statsGrid"></div>
+      <div class="section-title">Bo'limlar holati</div>
+      <div class="dep-grid" id="depGrid"></div>
+      <div class="section-title">So'ngi bemorlar</div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Bemor</th><th>Bo'lim</th><th>Turi</th><th>Holat</th><th>Sana</th></tr></thead>
+          <tbody id="recentTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BEMORLAR -->
+    <div id="tab-bemorlar" class="tab-page" style="display:none">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Bemorlar</h1>
+          <p class="page-sub" id="patientCount">0 ta bemor</p>
+        </div>
+        <button class="btn-primary" onclick="openAdd()">＋ Yangi bemor</button>
+      </div>
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="🔍 Bemor qidirish..." oninput="renderTable()"/>
+        <select id="filterDep" onchange="renderTable()">
+          <option value="all">Barcha bo'limlar</option>
+          <option value="lor">👂 LOR</option>
+          <option value="nevrologiya">🧠 Nevrologiya</option>
+          <option value="kardiologiya">❤️ Kardiologiya</option>
+          <option value="laboratoriya">🔬 Laboratoriya</option>
+        </select>
+        <select id="filterTur" onchange="renderTable()">
+          <option value="all">Barcha turlar</option>
+          <option value="ambulatory">🚶 Ambulatoriya</option>
+          <option value="statsionar">🛏️ Statsionar</option>
+        </select>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>#</th><th>Bemor ismi</th><th>Yosh</th><th>Telefon</th><th>Bo'lim</th><th>Turi</th><th>Holat</th><th>Shifokor</th><th>Amallar</th></tr></thead>
+          <tbody id="patientTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BO'LIMLAR -->
+    <div id="tab-bolimlar" class="tab-page" style="display:none">
+      <h1 class="page-title">Bo'limlar</h1>
+      <p class="page-sub">Shifoxona bo'limlari ma'lumotlari</p>
+      <div class="bolim-grid" id="bolimGrid"></div>
+    </div>
+
+    <!-- SHIFOKORLAR -->
+    <div id="tab-shifokorlar" class="tab-page" style="display:none">
+      <h1 class="page-title">Shifokorlar</h1>
+      <p class="page-sub">Tibbiyot xodimlari ro'yxati</p>
+      <div class="doc-grid" id="docGrid"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2 id="modalTitle">Yangi bemor qo'shish</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>👤 To'liq ismi</label>
+        <input type="text" id="fIsm" placeholder="Familiya Ism"/>
+      </div>
+      <div class="form-group">
+        <label>🎂 Yoshi</label>
+        <input type="number" id="fYosh" placeholder="Yosh" min="1" max="120"/>
+      </div>
+      <div class="form-group">
+        <label>📞 Telefon</label>
+        <input type="text" id="fTel" placeholder="+998901234567"/>
+      </div>
+      <div class="form-group">
+        <label>📅 Sana</label>
+        <input type="date" id="fSana"/>
+      </div>
+      <div class="form-group">
+        <label>🏢 Bo'lim</label>
+        <select id="fBolim" onchange="updateDoctorSelect()">
+          <option value="lor">👂 LOR</option>
+          <option value="nevrologiya">🧠 Nevrologiya</option>
+          <option value="kardiologiya">❤️ Kardiologiya</option>
+          <option value="laboratoriya">🔬 Laboratoriya</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>🏥 Davolash turi</label>
+        <select id="fTur">
+          <option value="ambulatory">🚶 Ambulatoriya</option>
+          <option value="statsionar">🛏️ Statsionar</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>👨‍⚕️ Shifokor</label>
+        <select id="fShifokor"></select>
+      </div>
+      <div class="form-group">
+        <label>📋 Holat</label>
+        <select id="fHolat">
+          <option>Qabul kutilmoqda</option>
+          <option>Davolanmoqda</option>
+          <option>Muolaja tugadi</option>
+          <option>Kuzatuvda</option>
+          <option>Tahlil natijasi kutilmoqda</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Bekor qilish</button>
+      <button class="btn-save" onclick="saveForm()">💾 Saqlash</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const departments = [
+  {id:"lor",      name:"LOR",          icon:"👂", color:"#0ea5e9", desc:"Quloq Burun Tomoq"},
+  {id:"nevrologiya", name:"Nevrologiya",icon:"🧠", color:"#8b5cf6", desc:"Asab tizimi"},
+  {id:"kardiologiya",name:"Kardiologiya",icon:"❤️",color:"#ef4444", desc:"Yurak-qon tomir"},
+  {id:"laboratoriya",name:"Laboratoriya",icon:"🔬",color:"#10b981", desc:"Tahlillar"},
+];
+
+const doctors = [
+  {ism:"Dr. Qambaraliyev Ma'rufjon", bolim:"lor",          daraja:"LOR shifokori"},
+  {ism:"Dr. Aliyeva Zarnigor",       bolim:"nevrologiya",   daraja:"Nevropatolog"},
+  {ism:"Dr. Nabijonov Bunyodbek",    bolim:"kardiologiya",  daraja:"Kardiolog"},
+  {ism:"Dr. Mirzo S.",               bolim:"laboratoriya",  daraja:"Laboratoriya"},
+];
+
+const statusColors = {
+  "Qabul kutilmoqda":            "#f59e0b",
+  "Davolanmoqda":                "#3b82f6",
+  "Muolaja tugadi":              "#10b981",
+  "Kuzatuvda":                   "#8b5cf6",
+  "Tahlil natijasi kutilmoqda":  "#f97316",
+};
+
+let patients = JSON.parse(localStorage.getItem("med_patients") || "null") || [
+  {id:1, ism:"Aliyev Jasur",      yosh:34, tel:"+998901234567", tur:"ambulatory",  holat:"Qabul kutilmoqda",           bolim:"kardiologiya", sana:"2026-06-03", shifokor:"Dr. Nabijonov Bunyodbek"},
+  {id:2, ism:"Rahimova Dilnoza",  yosh:56, tel:"+998902345678", tur:"statsionar",  holat:"Davolanmoqda",               bolim:"nevrologiya",  sana:"2026-05-28", shifokor:"Dr. Aliyeva Zarnigor"},
+  {id:3, ism:"Xasanov Bobur",     yosh:22, tel:"+998903456789", tur:"ambulatory",  holat:"Muolaja tugadi",             bolim:"lor",          sana:"2026-06-03", shifokor:"Dr. Qambaraliyev Ma'rufjon"},
+  {id:4, ism:"Nazarova Kamola",   yosh:45, tel:"+998904567890", tur:"statsionar",  holat:"Kuzatuvda",                  bolim:"kardiologiya", sana:"2026-06-01", shifokor:"Dr. Nabijonov Bunyodbek"},
+  {id:5, ism:"Ergashev Sarvar",   yosh:38, tel:"+998905678901", tur:"ambulatory",  holat:"Tahlil natijasi kutilmoqda", bolim:"laboratoriya", sana:"2026-06-03", shifokor:"Dr. Mirzo S."},
+];
+
+let editId = null;
+
+function saveStorage(){ localStorage.setItem("med_patients", JSON.stringify(patients)); }
+
+function depById(id){ return departments.find(d=>d.id===id)||{name:id,color:"#64748b",icon:""}; }
+function depColor(id){ return depById(id).color; }
+function depName(id){ return depById(id).name; }
+
+/* ── TAB ── */
+function showTab(name, btn){
+  document.querySelectorAll(".tab-page").forEach(p=>p.style.display="none");
+  document.getElementById("tab-"+name).style.display="block";
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  if(name==="dashboard") renderDashboard();
+  if(name==="bemorlar")  renderTable();
+  if(name==="bolimlar")  renderBolimlar();
+  if(name==="shifokorlar") renderDoctors();
 }
+
+/* ── DASHBOARD ── */
+function renderDashboard(){
+  const today = new Date().toISOString().split("T")[0];
+  const stats = [
+    {label:"Jami bemorlar",  val:patients.length,                                  icon:"👥", color:"#3b82f6"},
+    {label:"Ambulatoriya",   val:patients.filter(p=>p.tur==="ambulatory").length,  icon:"🚶", color:"#10b981"},
+    {label:"Statsionar",     val:patients.filter(p=>p.tur==="statsionar").length,  icon:"🛏️", color:"#f59e0b"},
+    {label:"Bugungi qabul",  val:patients.filter(p=>p.sana===today).length,        icon:"📋", color:"#8b5cf6"},
+  ];
+  document.getElementById("statsGrid").innerHTML = stats.map(s=>`
+    <div class="stat-card">
+      <div class="stat-bg">${s.icon}</div>
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-val" style="color:${s.color}">${s.val}</div>
+      <div class="stat-bar" style="background:${s.color}"></div>
+    </div>`).join("");
+
+  document.getElementById("depGrid").innerHTML = departments.map(d=>{
+    const cnt  = patients.filter(p=>p.bolim===d.id).length;
+    const stat = patients.filter(p=>p.bolim===d.id&&p.tur==="statsionar").length;
+    return `<div class="dep-card" style="border:1px solid ${d.color}30">
+      <div class="dep-head">
+        <div class="dep-icon-box" style="background:${d.color}20">${d.icon}</div>
+        <div><div class="dep-name">${d.name}</div><div class="dep-desc">${d.desc}</div></div>
+      </div>
+      <div class="dep-stats">
+        <span>Jami: <b style="color:${d.color}">${cnt}</b></span>
+        <span>Statsionar: <b style="color:#f59e0b">${stat}</b></span>
+      </div>
+    </div>`;
+  }).join("");
+
+  document.getElementById("recentTbody").innerHTML = patients.slice(0,5).map(p=>`
+    <tr>
+      <td style="color:#f1f5f9;font-weight:500">${p.ism}</td>
+      <td><span class="badge" style="background:${depColor(p.bolim)}20;color:${depColor(p.bolim)}">${depName(p.bolim)}</span></td>
+      <td style="color:#94a3b8;font-size:13px">${p.tur==="ambulatory"?"🚶 Ambulatoriya":"🛏️ Statsionar"}</td>
+      <td><span class="badge" style="background:${(statusColors[p.holat]||"#64748b")}20;color:${statusColors[p.holat]||"#94a3b8"}">${p.holat}</span></td>
+      <td style="color:#64748b;font-size:13px">${p.sana}</td>
+    </tr>`).join("");
+}
+
+/* ── BEMORLAR TABLE ── */
+function renderTable(){
+  const search = (document.getElementById("searchInput")||{value:""}).value.toLowerCase();
+  const dep    = (document.getElementById("filterDep")||{value:"all"}).value;
+  const tur    = (document.getElementById("filterTur")||{value:"all"}).value;
+  const list   = patients.filter(p=>{
+    if(dep!=="all"&&p.bolim!==dep) return false;
+    if(tur!=="all"&&p.tur!==tur)   return false;
+    if(search&&!p.ism.toLowerCase().includes(search)) return false;
+    return true;
+  });
+  const el = document.getElementById("patientCount");
+  if(el) el.textContent = list.length+" ta bemor topildi";
+  const tb = document.getElementById("patientTbody");
+  if(!tb) return;
+  if(list.length===0){ tb.innerHTML=`<tr class="empty-row"><td colspan="9">Bemor topilmadi</td></tr>`; return; }
+  tb.innerHTML = list.map((p,i)=>`
+    <tr>
+      <td style="color:#475569">${i+1}</td>
+      <td style="font-weight:600;color:#f1f5f9">${p.ism}</td>
+      <td style="color:#94a3b8">${p.yosh}</td>
+      <td style="color:#94a3b8">${p.tel}</td>
+      <td><span class="badge" style="background:${depColor(p.bolim)}20;color:${depColor(p.bolim)}">${depName(p.bolim)}</span></td>
+      <td><span class="badge" style="background:${p.tur==="statsionar"?"#f59e0b20":"#10b98120"};color:${p.tur==="statsionar"?"#f59e0b":"#10b981"}">${p.tur==="statsionar"?"🛏️ Statsionar":"🚶 Ambulatoriya"}</span></td>
+      <td><span class="badge" style="background:${(statusColors[p.holat]||"#64748b")}20;color:${statusColors[p.holat]||"#94a3b8"}">${p.holat}</span></td>
+      <td style="color:#94a3b8;font-size:13px">${p.shifokor}</td>
+      <td><button class="btn-icon btn-edit" onclick="openEdit(${p.id})">✏️</button> <button class="btn-icon btn-del" onclick="delPatient(${p.id})">🗑️</button></td>
+    </tr>`).join("");
+}
+
+/* ── BO'LIMLAR ── */
+function renderBolimlar(){
+  document.getElementById("bolimGrid").innerHTML = departments.map(d=>{
+    const list = patients.filter(p=>p.bolim===d.id);
+    const amb  = list.filter(p=>p.tur==="ambulatory").length;
+    const stat = list.filter(p=>p.tur==="statsionar").length;
+    const docs = doctors.filter(dr=>dr.bolim===d.id);
+    return `<div class="bolim-card" style="border:1px solid ${d.color}40">
+      <div class="bolim-head">
+        <div class="bolim-icon-big" style="background:${d.color}25">${d.icon}</div>
+        <div>
+          <h2 style="font-size:18px;font-weight:700;color:#f1f5f9">${d.name}</h2>
+          <p style="color:#64748b;font-size:13px">${d.desc}</p>
+        </div>
+      </div>
+      <div class="bolim-stats-grid">
+        <div class="bolim-stat"><div class="bolim-stat-val" style="color:${d.color}">${list.length}</div><div class="bolim-stat-lbl">Jami</div></div>
+        <div class="bolim-stat"><div class="bolim-stat-val" style="color:#10b981">${amb}</div><div class="bolim-stat-lbl">Ambulatoriya</div></div>
+        <div class="bolim-stat"><div class="bolim-stat-val" style="color:#f59e0b">${stat}</div><div class="bolim-stat-lbl">Statsionar</div></div>
+      </div>
+      <div class="dr-section-label">Shifokorlar</div>
+      ${docs.map(dr=>`<div class="dr-row"><span style="color:#e2e8f0;font-size:14px">👨‍⚕️ ${dr.ism}</span><span class="badge" style="background:${d.color}15;color:${d.color}">${dr.daraja}</span></div>`).join("")}
+    </div>`;
+  }).join("");
+}
+
+/* ── SHIFOKORLAR ── */
+function renderDoctors(){
+  document.getElementById("docGrid").innerHTML = doctors.map(dr=>{
+    const d   = departments.find(dep=>dep.id===dr.bolim)||{color:"#64748b",icon:"",name:dr.bolim};
+    const cnt = patients.filter(p=>p.shifokor===dr.ism).length;
+    return `<div class="doc-card" style="border:1px solid ${d.color}30">
+      <div class="doc-avatar" style="background:${d.color}20">👨‍⚕️</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:16px;color:#f1f5f9">${dr.ism}</div>
+        <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
+          <span class="badge" style="background:${d.color}20;color:${d.color}">${d.icon} ${d.name}</span>
+          <span class="badge" style="background:#33415520;color:#94a3b8">⭐ ${dr.daraja}</span>
+        </div>
+        <div style="margin-top:10px;font-size:13px;color:#64748b">Bemorlar: <b style="color:${d.color}">${cnt}</b> ta</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ── MODAL ── */
+function updateDoctorSelect(){
+  const dep = document.getElementById("fBolim").value;
+  const sel = document.getElementById("fShifokor");
+  sel.innerHTML = doctors.filter(d=>d.bolim===dep).map(d=>`<option>${d.ism}</option>`).join("");
+}
+
+function openAdd(){
+  editId=null;
+  document.getElementById("modalTitle").textContent="Yangi bemor qo'shish";
+  document.getElementById("fIsm").value="";
+  document.getElementById("fYosh").value="";
+  document.getElementById("fTel").value="";
+  document.getElementById("fSana").value=new Date().toISOString().split("T")[0];
+  document.getElementById("fBolim").value="lor";
+  document.getElementById("fTur").value="ambulatory";
+  document.getElementById("fHolat").value="Qabul kutilmoqda";
+  updateDoctorSelect();
+  document.getElementById("modalOverlay").classList.add("open");
+}
+
+function openEdit(id){
+  const p=patients.find(x=>x.id===id); if(!p)return;
+  editId=id;
+  document.getElementById("modalTitle").textContent="Bemorni tahrirlash";
+  document.getElementById("fIsm").value=p.ism;
+  document.getElementById("fYosh").value=p.yosh;
+  document.getElementById("fTel").value=p.tel;
+  document.getElementById("fSana").value=p.sana;
+  document.getElementById("fBolim").value=p.bolim;
+  document.getElementById("fTur").value=p.tur;
+  document.getElementById("fHolat").value=p.holat;
+  updateDoctorSelect();
+  document.getElementById("fShifokor").value=p.shifokor;
+  document.getElementById("modalOverlay").classList.add("open");
+}
+
+function closeModal(){
+  document.getElementById("modalOverlay").classList.remove("open");
+}
+
+function saveForm(){
+  const ism=document.getElementById("fIsm").value.trim();
+  const yosh=document.getElementById("fYosh").value;
+  const tel=document.getElementById("fTel").value.trim();
+  const sana=document.getElementById("fSana").value;
+  const bolim=document.getElementById("fBolim").value;
+  const tur=document.getElementById("fTur").value;
+  const shifokor=document.getElementById("fShifokor").value;
+  const holat=document.getElementById("fHolat").value;
+  if(!ism||!yosh||!tel){ alert("Ism, yosh va telefon majburiy!"); return; }
+  if(editId){
+    patients=patients.map(p=>p.id===editId?{...p,ism,yosh:+yosh,tel,sana,bolim,tur,shifokor,holat}:p);
+  } else {
+    patients.push({id:Date.now(),ism,yosh:+yosh,tel,sana,bolim,tur,shifokor,holat});
+  }
+  saveStorage();
+  closeModal();
+  renderTable();
+}
+
+function delPatient(id){
+  if(!confirm("Bemorni o'chirishni tasdiqlaysizmi?")) return;
+  patients=patients.filter(p=>p.id!==id);
+  saveStorage();
+  renderTable();
+}
+
+/* close overlay on outside click */
+document.getElementById("modalOverlay").addEventListener("click",function(e){
+  if(e.target===this) closeModal();
+});
+
+/* ── INIT ── */
+document.getElementById("sidebarDate").textContent = "📅 "+new Date().toLocaleDateString("uz-UZ");
+renderDashboard();
+</script>
+</body>
+</html>
